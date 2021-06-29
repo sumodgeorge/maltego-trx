@@ -1,7 +1,7 @@
 import socket
-from maltego_trx.maltego import UIM_TYPES
-from maltego_trx.entities import IPAddress
 
+from maltego_trx.entities import IPAddress
+from maltego_trx.maltego import UIM_TYPES
 from maltego_trx.transform import DiscoverableTransform
 
 

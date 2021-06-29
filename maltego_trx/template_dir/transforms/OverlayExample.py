@@ -32,4 +32,3 @@ class OverlayExample(DiscoverableTransform):
 
         # Or a small color indicator
         entity.addOverlay('#45e06f', OverlayPosition.NORTH_WEST, OverlayType.COLOUR)
-

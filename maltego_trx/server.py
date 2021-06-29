@@ -1,12 +1,12 @@
 import logging
 
 from flask import Flask, request
+
 from maltego_trx.maltego import MaltegoMsg
 from .registry import mapping
 
 log = logging.getLogger("maltego.server")
 logging.basicConfig(level=logging.DEBUG)
-
 
 URL_TEMPLATE = '/run/<transform_name>/'
 URL_TEMPLATE_NO_SLASH = '/run/<transform_name>'

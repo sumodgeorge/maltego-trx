@@ -1,5 +1,4 @@
 import uuid;
-
 from xml.dom import minidom
 
 from .entities import Phrase, translate_legacy_property_name, entity_property_map
@@ -13,12 +12,12 @@ BOOKMARK_COLOR_YELLOW = "2"
 BOOKMARK_COLOR_PURPLE = "3"
 BOOKMARK_COLOR_RED = "4"
 BOOKMARK_CLRS = {
-    "none": BOOKMARK_COLOR_NONE,
-    "blue": BOOKMARK_COLOR_BLUE,
-    "green": BOOKMARK_COLOR_GREEN,
-    "yellow": BOOKMARK_COLOR_YELLOW,
-    "purple": BOOKMARK_COLOR_PURPLE,
-    "red": BOOKMARK_COLOR_RED,
+        "none":   BOOKMARK_COLOR_NONE,
+        "blue":   BOOKMARK_COLOR_BLUE,
+        "green":  BOOKMARK_COLOR_GREEN,
+        "yellow": BOOKMARK_COLOR_YELLOW,
+        "purple": BOOKMARK_COLOR_PURPLE,
+        "red":    BOOKMARK_COLOR_RED,
 }
 
 LINK_STYLE_NORMAL = "0"
@@ -26,10 +25,10 @@ LINK_STYLE_DASHED = "1"
 LINK_STYLE_DOTTED = "2"
 LINK_STYLE_DASHDOT = "3"
 LINK_STYLES = {
-    "normal": LINK_STYLE_NORMAL,
-    "dashed": LINK_STYLE_DASHED,
-    "dotted": LINK_STYLE_DOTTED,
-    "dashdot": LINK_STYLE_DASHDOT,
+        "normal":  LINK_STYLE_NORMAL,
+        "dashed":  LINK_STYLE_DASHED,
+        "dotted":  LINK_STYLE_DOTTED,
+        "dashdot": LINK_STYLE_DASHDOT,
 }
 
 UIM_FATAL = 'FatalError'
@@ -37,10 +36,10 @@ UIM_PARTIAL = 'PartialError'
 UIM_INFORM = 'Inform'
 UIM_DEBUG = 'Debug'
 UIM_TYPES = {
-    "fatal": UIM_FATAL,
-    "partial": UIM_PARTIAL,
-    "inform": UIM_INFORM,
-    "debug": UIM_DEBUG,
+        "fatal":   UIM_FATAL,
+        "partial": UIM_PARTIAL,
+        "inform":  UIM_INFORM,
+        "debug":   UIM_DEBUG,
 }
 
 ADD_FIELD_TEMPLATE = "<Field MatchingRule=\"%(matching)s\" Name=\"%(name)s\" DisplayName=\"%(display)s\"><![CDATA[%(value)s]]></Field>"
@@ -117,18 +116,18 @@ class MaltegoEntity(object):
         matching = "strict" if matching.lower().strip() == "strict" else "loose"
 
         return ADD_FIELD_TEMPLATE % {
-            "matching": matching,
-            "name": name,
-            "display": display,
-            "value": remove_invalid_xml_chars(value),
+                "matching": matching,
+                "name":     name,
+                "display":  display,
+                "value":    remove_invalid_xml_chars(value),
         }
 
     def disp_info_to_xml(self, disp_info):
         name, content = disp_info
 
         return DISP_INFO_TEMPLATE % {
-            "content": remove_invalid_xml_chars(content),
-            "name": name,
+                "content": remove_invalid_xml_chars(content),
+                "name":    name,
         }
 
     def returnEntity(self):
@@ -152,9 +151,9 @@ class MaltegoEntity(object):
             lines.append("<Overlays>")
             for overlay in self.overlays:
                 overlay_tag = OVERLAY_TEMPLATE % {
-                    "property_name": overlay[0],
-                    "position": overlay[1],
-                    "type": overlay[2],
+                        "property_name": overlay[0],
+                        "position":      overlay[1],
+                        "type":          overlay[2],
                 }
                 lines.append(overlay_tag)
             lines.append("</Overlays>")
@@ -251,7 +250,7 @@ class MaltegoMsg:
             for genealogy_type_tag in genealogy_types:
                 entity_type_name = genealogy_type_tag.getAttribute("Name")
                 entity_type_old_name = genealogy_type_tag.getAttribute("OldName")
-                entity_type = {"Name": entity_type_name,
+                entity_type = {"Name":    entity_type_name,
                                "OldName": entity_type_old_name if entity_type_old_name else None}
                 self.Genealogy.append(entity_type)
 
