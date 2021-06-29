@@ -1,4 +1,4 @@
-import uuid;
+import uuid
 from xml.dom import minidom
 
 from .entities import Phrase, translate_legacy_property_name, entity_property_map
@@ -131,10 +131,10 @@ class MaltegoEntity(object):
         }
 
     def returnEntity(self):
-        lines = []
-        lines.append("<Entity Type=\"%s\">" % str(self.entityType))
-        lines.append("<Value><![CDATA[%s]]></Value>" % str(self.value))
-        lines.append("<Weight>%s</Weight>" % str(self.weight))
+        lines = [("<Entity Type=\"%s\">" % str(self.entityType)),
+                 "<Value><![CDATA[%s]]></Value>" % str(self.value),
+                 "<Weight>%s</Weight>" % str(self.weight)]
+
         if self.displayInformation:
             lines.append("<DisplayInformation>")
             for disp_info in self.displayInformation:
@@ -182,10 +182,9 @@ class MaltegoTransform(object):
         self.exceptions.append(exceptionString)
 
     def throwExceptions(self):
-        lines = []
-        lines.append("<MaltegoMessage>")
-        lines.append("<MaltegoTransformExceptionMessage>")
-        lines.append("<Exceptions>")
+        lines = ["<MaltegoMessage>",
+                 "<MaltegoTransformExceptionMessage>",
+                 "<Exceptions>"]
 
         for exception in self.exceptions:
             lines.append("<Exception>%s</Exception>" % remove_invalid_xml_chars(exception))
@@ -196,11 +195,10 @@ class MaltegoTransform(object):
         return "".join(lines)
 
     def returnOutput(self):
-        lines = []
-        lines.append("<MaltegoMessage>")
-        lines.append("<MaltegoTransformResponseMessage>")
+        lines = ["<MaltegoMessage>",
+                 "<MaltegoTransformResponseMessage>",
+                 "<Entities>"]
 
-        lines.append("<Entities>")
         for entity in self.entities:
             lines.append(entity.returnEntity())
         lines.append("</Entities>")
